@@ -1,0 +1,21 @@
+{
+  "defaultEnv": {"ENV": "NODE_ENV"},
+  "localhost": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "root",
+    "host": "localhost",
+    "database": "search",
+    "port": 5432
+  },
+  "development": {
+    "driver": "pg",
+    "host": "ec2-54-247-70-127.eu-west-1.compute.amazonaws.com",
+    "port": 5432,
+    "user": "ezwqcouaugypev",
+    "password": "5961a55ce5f46f96e6cc7e6660f06c18a1a742b50ffb27b0da3494b55856204b",
+    "database": "d2cqf75n565bie",
+    "ssl": true
+  },
+  "sql-file": true
+}

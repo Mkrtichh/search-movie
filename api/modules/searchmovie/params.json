@@ -1,0 +1,6 @@
+{
+  "REQUIRE_PARAMS": [
+    "name"
+  ],
+  "movieApi" : "https://www.omdbapi.com/?apikey=e74c9665&s="
+}
