@@ -1,104 +1,3 @@
-/*import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import AlignItemsList from '../movie-list/movieList';
-
-import './search.css';
-
-
-const styles = theme => ({
-  button: {
-    width: '100%',
-    height: 32,
-    marginTop: 20
-  },
-  input: {
-    display: 'none',
-  },
-  container: {
-    width: 300,
-    display: 'block',
-    margin: '0 auto 0 60px',
-    paddingTop: 60,
-  },
-  textField: {
-    display: 'block',
-    width: 300,
-  },
-});
-
-
-class SearchField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      search: '',
-      movies: [],
-      autofillData: [],
-    };
-  }
-  componentDidMount() {}
-
-  getMovie() {
-    if(!this.state.search) return;
-
-    fetch(`/data-autofill?name=${this.state.search}`)
-      .then(response =>response.json()).then(data => {
-        let movies = JSON.parse(data.body);
-        this.setState({ movies: movies.Search });
-    });
-}
-
-  handleChange (item) {
-    this.setState({ search: item.target.value });
-
-    fetch(`/data-autofill?name=${item.target.value}`)
-      .then(response => response.json())
-      .then(data => {
-        let movies = JSON.parse(data.body);
-        this.setState({ autofillData:  movies.Search})
-      });
-  };
-  render() {
-    const { classes } = this.props;
-    const { movies } = this.state;
-
-    return (
-      [
-        <form className={classes.container} noValidate autoComplete="on">
-
-          <TextField
-            id="standard-search"
-            label="Find me"
-            type="text"
-            fullWidth
-            onChange={this.handleChange.bind(this)}
-            className={classes.textField}
-            margin="normal"
-          />
-          <Button variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={this.getMovie.bind(this)}>
-            Search
-          </Button>
-        </form>,
-        <AlignItemsList movies={movies} />
-      ]
-
-    );
-  }
-}
-
-SearchField.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SearchField);*/
-
 import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 import deburr from 'lodash/deburr';
@@ -277,7 +176,7 @@ class IntegrationDownshift extends Component  {
               }) => (
               <div className={classes.container}>
                 {this.renderInput({
-                  width: 300,
+                  width: 400,
                   classes,
                   InputProps: getInputProps({
                     type: "text",

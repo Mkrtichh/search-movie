@@ -1,6 +1,32 @@
 # search-movie
 
+# Tech stack
+* Backend: Node.js LTS
+* Node Framework: Sails.js
+* DB: Postgres SQL
+* Frontend : React JS (16.8.4) Webpack for bundling
+* Server: Heroku
+
 a [Sails v1](https://sailsjs.com) application
+
+# Application Run
+
+* `npm run client` default NODE_ENV is `localhost`
+* If you want change env for frontend run `export NODE_ENV=development; Webpack` or any Webpack command.
+* change base url for client side from src/configs
+
+# Migration Scripts
+
+For creating migration script run following command
+
+`db-migrate create migrationScriptName` then go to folder `migration/sqls/` folder find
+your sql files there will be two `up` and `down`. File name format will be
+* `timestamp-migrationScripName-up.sql`
+* `timestamp-migrationScripName-down.sql`
+
+For running migration script run following commands.
+* for up `db-migrate up`
+* for down `db-migrate down`
 
 
 ### Links
