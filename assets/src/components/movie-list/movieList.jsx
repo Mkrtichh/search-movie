@@ -23,7 +23,6 @@ const styles = theme => ({
 class AlignItemsList extends Component {
   constructor(props) {
     super(props);
-    props.params
     this.state = {};
   }
 

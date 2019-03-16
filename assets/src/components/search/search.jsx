@@ -239,7 +239,7 @@ class IntegrationDownshift extends Component  {
       if (moviesjson.Response && moviesjson.Response === "False") return;
 
       movies = moviesjson.Search;
-      this.setState({ shareLink: `${Config.environmentUrl}/get-movie?name=${this.state.search}`});
+      this.setState({ shareLink: `${Config.environmentUrl}/movie/${this.state.search}`});
       this.setState({ movies: moviesjson.Search });
     });
   }
@@ -313,10 +313,6 @@ class IntegrationDownshift extends Component  {
         </form>
         <div className={classes.divider} />
         <AlignItemsList movies={movies} />
-        <div>
-          <div>Copy share link</div>
-          <div>{this.state.shareLink}</div>
-        </div>
       </div>
     );
   }
