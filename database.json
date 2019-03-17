@@ -10,11 +10,11 @@
   },
   "development": {
     "driver": "pg",
-    "host": "ec2-54-247-70-127.eu-west-1.compute.amazonaws.com",
+    "host": "ec2-50-19-109-120.compute-1.amazonaws.com\n",
     "port": 5432,
-    "user": "ezwqcouaugypev",
-    "password": "5961a55ce5f46f96e6cc7e6660f06c18a1a742b50ffb27b0da3494b55856204b",
-    "database": "d2cqf75n565bie",
+    "user": "lmexdcwfnemouq",
+    "password": "e866f70c0badec0e57e6e00bc875a72e1980eadf8bfef2514f5fbdba7f305ebf",
+    "database": "df6df0efqqj482",
     "ssl": true
   },
   "sql-file": true

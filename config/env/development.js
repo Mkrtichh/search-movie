@@ -24,7 +24,7 @@ module.exports = {
   datastores: {
     default: {
       // adapter: 'sails-mysql',
-      url: 'postgresql://iorwhnoaamviea:5ea25efaaf8b75876c3e3398840d61e06e152e6fa60c42a67818d47e29881954@ec2-54-197-232-203.compute-1.amazonaws.com:5432/dfrjoevts4gu33',
+      url: 'postgresql://lmexdcwfnemouq:e866f70c0badec0e57e6e00bc875a72e1980eadf8bfef2514f5fbdba7f305ebf@ec2-50-19-109-120.compute-1.amazonaws.com:5432/df6df0efqqj482',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -326,7 +326,7 @@ module.exports = {
    *                                                                         *
    ***************************************************************************/
   custom: {
-    baseUrl: 'https://search-some-filmo.herokuapp.com/',
+    baseUrl: 'https://search-film-app.herokuapp.com/',
   },
 
 };
