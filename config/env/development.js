@@ -24,7 +24,7 @@ module.exports = {
   datastores: {
     default: {
       // adapter: 'sails-mysql',
-      url: 'postgresql://lmexdcwfnemouq:e866f70c0badec0e57e6e00bc875a72e1980eadf8bfef2514f5fbdba7f305ebf@ec2-50-19-109-120.compute-1.amazonaws.com:5432/df6df0efqqj482',
+      url: 'postgresql://oqifmnrhgamqqw:fcb7d49e151458b803fab1abad5d46d921def8d5f1a7f84c7475cb0f6064386c@ec2-50-19-109-120.compute-1.amazonaws.com:5432/dcgii8mdtr3gr3',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
