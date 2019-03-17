@@ -50,16 +50,6 @@ module.exports.datastores = {
     ***************************************************************************/
     adapter: 'sails-postgresql',
     url: 'postgresql://postgres:root@localhost:5432/search',
-
-    // somePostgreSqlServerLocal : {
-    //   adapter  : 'sails-postgresql',
-    //   host     : 'localhost',
-    //   port     : 5432,
-    //   user     : 'postgres', // optional
-    //   password : 'root', // optional
-    //   database : 'search', //optional
-    //   ssl      : false,
-    // },
   },
 
 

@@ -46,14 +46,15 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "start": "npm-run-all --parallel ",
+    "start": "NODE_ENV=development node app.js",
+    "migration": "node node_modules/db-migrate/bin/db-migrate up",
+    "heroku-postbuild": "npm run build:prod",
     "start:debug": "npm-run-all --parallel client debug",
-    "client": "webpack --progress -p --config webpack.config.js --watch --hot",
+    "client": "webpack --watch --hot",
     "build": "npm run build:prod",
     "build:dev": "webpack --mode development",
     "build:prod": "webpack --mode production",
     "clean": "rimraf .tmp && mkdirp .tmp/public",
-    "lift": "sails lift",
     "debug": "node --inspect app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",

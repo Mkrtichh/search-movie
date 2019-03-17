@@ -1,23 +1,15 @@
 /**
- * Production environment settings
- * (sails.config.*)
+ * Development environment settings
  *
- * What you see below is a quick outline of the built-in settings you need
- * to configure your Sails app for production.  The configuration in this file
- * is only used in your production environment, i.e. when you lift your app using:
+ * This file can include shared settings for a development team,
+ * such as API keys or remote database passwords.  If you're using
+ * a version control solution for your Sails app, this file will
+ * be committed to your repository unless you add it to your .gitignore
+ * file.  If your repository will be publicly viewable, don't add
+ * any private information to this file!
  *
- * ```
- * NODE_ENV=production node app
- * ```
- *
- * > If you're using git as a version control solution for your Sails app,
- * > this file WILL BE COMMITTED to your repository by default, unless you add
- * > it to your .gitignore file.  If your repository will be publicly viewable,
- * > don't add private/sensitive data (like API secrets / db passwords) to this file!
- *
- * For more best practices and tips, see:
- * https://sailsjs.com/docs/concepts/deployment
  */
+
 
 module.exports = {
 
@@ -30,24 +22,9 @@ module.exports = {
    *                                                                         *
    **************************************************************************/
   datastores: {
-    /***************************************************************************
-     *                                                                          *
-     * Configure your default production database.                              *
-     *                                                                          *
-     * 1. Choose an adapter:                                                    *
-     *    https://sailsjs.com/plugins/databases                                 *
-     *                                                                          *
-     * 2. Install it as a dependency of your Sails app.                         *
-     *    (For example:  npm install sails-mysql --save)                        *
-     *                                                                          *
-     * 3. Then set it here (`adapter`), along with a connection URL (`url`)     *
-     *    and any other, adapter-specific customizations.                       *
-     *    (See https://sailsjs.com/config/datastores for help.)                 *
-     *                                                                          *
-     ***************************************************************************/
     default: {
       // adapter: 'sails-mysql',
-      url: 'postgres://ezwqcouaugypev:5961a55ce5f46f96e6cc7e6660f06c18a1a742b50ffb27b0da3494b55856204b@ec2-54-247-70-127.eu-west-1.compute.amazonaws.com:5432/d2cqf75n565bie',
+      url: 'postgresql://iorwhnoaamviea:5ea25efaaf8b75876c3e3398840d61e06e152e6fa60c42a67818d47e29881954@ec2-54-197-232-203.compute-1.amazonaws.com:5432/dfrjoevts4gu33',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -69,8 +46,7 @@ module.exports = {
        * https://sailsjs.com/config/datastores                                     *
        *                                                                           *
        ****************************************************************************/
-      // ssl: true,
-
+      ssl: true,
     },
 
   },
@@ -78,28 +54,8 @@ module.exports = {
 
 
   models: {
-
-    /***************************************************************************
-     *                                                                          *
-     * To help avoid accidents, Sails automatically sets the automigration      *
-     * strategy to "safe" when your app lifts in production mode.               *
-     * (This is just here as a reminder.)                                       *
-     *                                                                          *
-     * More info:                                                               *
-     * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
-     *                                                                          *
-     ***************************************************************************/
     migrate: 'safe',
 
-    /***************************************************************************
-     *                                                                          *
-     * If, in production, this app has access to physical-layer CASCADE         *
-     * constraints (e.g. PostgreSQL or MySQL), then set those up in the         *
-     * database and uncomment this to disable Waterline's `cascadeOnDestroy`    *
-     * polyfill.  (Otherwise, if you are using a databse like Mongo, you might  *
-     * choose to keep this enabled.)                                            *
-     *                                                                          *
-     ***************************************************************************/
     // cascadeOnDestroy: false,
 
   },
@@ -370,23 +326,7 @@ module.exports = {
    *                                                                         *
    ***************************************************************************/
   custom: {
-    baseUrl: 'https://movie-search-heroku.herokuapp.com/',
-
-    // mailgunDomain: 'mg.example.com',
-    // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
-    // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
-    //--------------------------------------------------------------------------
-    // /\   OR, to avoid checking them in to version control, you might opt to
-    // ||   set sensitive credentials like these using environment variables.
-    //
-    // For example:
-    // ```
-    // sails_custom__mailgunDomain=mg.example.com
-    // sails_custom__mailgunSecret=key-prod_fake_bd32301385130a0bafe030c
-    // sails_custom__stripeSecret=sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm
-    // ```
-    //--------------------------------------------------------------------------
-
+    baseUrl: 'https://search-some-filmm.herokuapp.com',
   },
 
 };

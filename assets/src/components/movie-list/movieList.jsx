@@ -36,7 +36,7 @@ class AlignItemsList extends Component {
     return (
       <List className={classes.root}>
         {movies.map(movie =>
-          <ListItem  alignItems="flex-start">
+          <ListItem  key={movie.imdbID} alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="No image" src={movie.Poster}/>
             </ListItemAvatar>
