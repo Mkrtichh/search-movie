@@ -136,7 +136,7 @@ class IntegrationDownshift extends Component  {
       if (moviesjson.Response && moviesjson.Response === "False") return;
 
       this.setState({
-        shareLink: `${Config.environmentUrl}shared-resourse/${this.state.search}`,
+        shareLink: `${Config.environmentUrl}/shared-resourse/${this.state.search}`,
         movies: moviesjson.Search
       });
     });
