@@ -7,11 +7,9 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import AlignItemsList from '../movie-list/movieList';
 import * as Config from '../../configs';
-
-let suggestions = [];
-let movies =[];
 
 
 function renderSuggestion({ suggestion, index, itemProps, highlightedIndex }) {
@@ -38,25 +36,6 @@ renderSuggestion.propTypes = {
   itemProps: PropTypes.object,
   suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
 };
-
-function getSuggestions(value) {
-  const inputValue = deburr(value.trim()).toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
-
-  return inputLength === 0
-    ? []
-    : suggestions.filter(suggestion => {
-      const keep =
-        count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
-
-      if (keep) {
-        count += 1;
-      }
-
-      return keep;
-    });
-}
 
 const styles = theme => ({
   root: {
@@ -86,10 +65,23 @@ const styles = theme => ({
   inputInput: {
     width: 'auto',
     flexGrow: 1,
+    minWidth: 350,
+
   },
   divider: {
     height: theme.spacing.unit * 2,
   },
+  inline: {
+    display: 'inline',
+  },
+  copyLink: {
+    marginTop: '10px',
+    display: 'inline',
+  },
+  shareBlock: {
+    display: 'inline-grid',
+    float: 'right'
+  }
 });
 
 class IntegrationDownshift extends Component  {
@@ -99,9 +91,15 @@ class IntegrationDownshift extends Component  {
       error: '',
       search: '',
       shareLink: '',
+      toggleShareLink: false,
       movies: [],
       suggestions: [],
     };
+    this.getMovie = this.getMovie.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+    this.toggleShareLink = this.toggleShareLink.bind(this);
+    this.getSuggestions = this.getSuggestions.bind(this);
   }
 
   renderInput(inputProps) {
@@ -125,88 +123,127 @@ class IntegrationDownshift extends Component  {
 
   onKeyPress (e) {
     if(e.which === 13) {
-      this.getMovie.bind(this)();
+      this.getMovie();
     }
   }
 
   getMovie () {
     if(!this.state.search) return;
 
-    fetch(`/get-movie?name=${this.state.search}`)
+    fetch(`/movie?name=${this.state.search}`)
       .then(response =>response.json()).then(data => {
-      let moviesjson = JSON.parse(data);
+      const moviesjson = JSON.parse(data.body);
       if (moviesjson.Response && moviesjson.Response === "False") return;
 
-      movies = moviesjson.Search;
-      this.setState({ shareLink: `${Config.environmentUrl}/movie/${this.state.search}`});
-      this.setState({ movies: moviesjson.Search });
+      this.setState({
+        shareLink: `${Config.environmentUrl}shared-resourse/${this.state.search}`,
+        movies: moviesjson.Search
+      });
     });
   }
 
-  handleChange (item) {
-    this.setState({ search: item.target.value });
-    fetch(`/data-autofill?name=${item.target.value}`)
+  handleChange (input) {
+    this.setState({ search: input.target.value });
+    fetch(`/data-autofill?name=${ input.target.value }`)
       .then(response => response.json())
       .then(data => {
         let moviesjson = JSON.parse(data.body);
         if (moviesjson.Response && moviesjson.Response === "False") return;
 
-        suggestions = moviesjson.Search.map((item) => {
-          return {
-            label: item.Title
-          }
-        });
-        this.setState({ suggestions:  moviesjson.Search})
+        const suggestions = moviesjson.Search.map(item => { return {label: item.Title}; });
+        this.setState({ suggestions })
+      });
+  }
+
+  toggleShareLink () {
+    this.setState(state => ({ toggleShareLink: !state.toggleShareLink }))
+  }
+
+  getSuggestions(value) {
+    const inputValue = deburr(value.trim()).toLowerCase();
+    const { suggestions } = this.state;
+    const inputLength = inputValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : suggestions.filter(suggestion => {
+        const keep =
+          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+
+        if (keep) {
+          count += 1;
+        }
+
+        return keep;
       });
   }
 
   render() {
     const { classes } = this.props;
+    const { movies, shareLink, toggleShareLink } = this.state;
+
     return (
       <div className={classes.root}>
-        <form className={classes.container} noValidate autoComplete="on">
-          <Downshift id="downshift-simple">
-            {({
-                getInputProps,
-                getItemProps,
-                getMenuProps,
-                highlightedIndex,
-                inputValue,
-                isOpen,
-              }) => (
-              <div className={classes.container}>
-                {this.renderInput({
-                  width: 400,
-                  classes,
-                  InputProps: getInputProps({
-                    type: "text",
-                    onChange: this.handleChange.bind(this),
-                    onKeyPress: this.onKeyPress.bind(this),
-                    placeholder: 'Search a movie',
-                  }),
-                })}
-                <div {...getMenuProps()}>
-                  {isOpen ? (
-                    <Paper className={classes.paper} square>
-                      {getSuggestions(inputValue).map((suggestion, index) =>
-                        renderSuggestion({
-                          suggestion,
-                          index,
-                          itemProps: getItemProps({ item: suggestion.label }),
-                          highlightedIndex,
-                        }),
-                      )}
-                    </Paper>
-                  ) : null}
+        <form className={classes.container} action="false" noValidate autoComplete="on">
+          <div>
+            <Downshift id="downshift-simple">
+              {({
+                  getInputProps,
+                  getItemProps,
+                  getMenuProps,
+                  highlightedIndex,
+                  inputValue,
+                  isOpen,
+                }) => (
+                <div className={classes.container}>
+                  {this.renderInput({
+                    width: 400,
+                    classes,
+                    InputProps: getInputProps({
+                      type: "text",
+                      onChange: this.handleChange,
+                      onKeyPress: this.onKeyPress,
+                      placeholder: 'Search a movie',
+                    }),
+                  })}
+                  <div {...getMenuProps()}>
+                    {isOpen ? (
+                      <Paper className={classes.paper} square>
+                        {this.getSuggestions(inputValue).map((suggestion, index) =>
+                          renderSuggestion({
+                            suggestion,
+                            index,
+                            itemProps: getItemProps({ item: suggestion.label }),
+                            highlightedIndex,
+                          }),
+                        )}
+                      </Paper>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-            )}
-          </Downshift>
+              )}
+            </Downshift>
+            <div className={classes.shareBlock}>
+              {movies.length > 0 && (
+                <Button variant="contained"
+                        color="secondary"
+                        type="button"
+                        className={classes.button}
+                        onClick={this.toggleShareLink}>Show sharable link</Button>
+              )}
+              {movies.length > 0 && toggleShareLink && (
+                <Typography component="span" className={classes.copyLink} color="textPrimary">
+                  {shareLink }
+                </Typography>
+              )}
+            </div>
+          </div>
           <div className={classes.divider} />
           <Button variant="contained"
                 color="primary"
                 className={classes.button}
-                onClick={this.getMovie.bind(this)}>
+                onClick={e => this.getMovie(e)}>
           Search
         </Button>
         </form>

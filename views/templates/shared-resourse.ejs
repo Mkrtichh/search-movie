@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shared Shearch Data</title>
+
+  <style>
+    body {
+      font-size: 1.2em;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+    }
+    .header {
+      overflow: hidden;
+      background-color: #3f51b5;
+      padding: 20px 10px;
+    }
+
+
+    .header a.logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    .custom-counter {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .custom-counter li {
+      counter-increment: step-counter;
+      margin-bottom: 10px;
+    }
+
+    .custom-counter li::before {
+      content: counter(step-counter);
+      margin-right: 5px;
+      font-size: 80%;
+      background-color: #3f51b5;
+      color: white;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body >
+<div class="header">
+  <a class="logo">Shared Search Result</a>
+</div>
+  <div style="margin: 60px auto 0 40px;">
+    <ul class="custom-counter">
+      <% movies.forEach(function(m) { %>
+        <li>-<%= m.Title %>,   <%= m.Year %></li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

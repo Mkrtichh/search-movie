@@ -5,7 +5,7 @@ const Validators = require('./validators');
 
 class SearchMovie {
 
-  static async getMovie (req, res) {
+   static async getMovie (req, res) {
 
     //validate required field
     const invalid = Validators.validateForGetMovie(req);
@@ -13,11 +13,11 @@ class SearchMovie {
       return res.status(400).json({message: invalid});
     }
     await Service.saveItem(req.query.name);
-     let a = await Model.getMovie(req);
-    res.ok(a.body);
+
+    res.ok(await Model.getMovie(req));
   }
 
-  static async getMovieAutofill (req, res) {
+   static async getMovieAutofill (req, res) {
 
     //validate required field
     const invalid = Validators.validateForGetMovie(req);
@@ -28,5 +28,15 @@ class SearchMovie {
     res.ok(await Service.getMovieAutofill(req));
   }
 
+   static async getSharedResourse (req, res) {
+
+    //validate required field
+    const invalid = Validators.validateForGetMovie(req);
+    if (invalid) {
+      return res.status(400).json({message: invalid});
+    }
+   const a = await Service.getSharedResourse(req);
+    res.send(a);
+  }
 }
 module.exports = SearchMovie;

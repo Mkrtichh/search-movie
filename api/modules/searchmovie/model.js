@@ -11,7 +11,7 @@ class SearchMovieModel {
   }
 
   static async getMovie (req) {
-    const name = req.query.name;
+    const name = req.query.name || req.params.name;
     return await Methods.getDataFromExternalApi('get', movieApi+name)
   }
 

@@ -46,9 +46,9 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "start": "NODE_ENV=development node app.js",
+    "start": "node app.js",
     "migration": "node node_modules/db-migrate/bin/db-migrate up",
-    "heroku-postbuild": "npm run build:prod",
+    "heroku-postbuild": "npm run build:dev",
     "start:debug": "npm-run-all --parallel client debug",
     "client": "webpack --watch --hot",
     "build": "npm run build:prod",

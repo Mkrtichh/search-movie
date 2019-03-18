@@ -326,7 +326,7 @@ module.exports = {
    *                                                                         *
    ***************************************************************************/
   custom: {
-    baseUrl: 'https://search-film-app.herokuapp.com/',
+    baseUrl: 'https://search-film-app.herokuapp.com',
   },
 
 };

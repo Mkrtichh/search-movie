@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import queryString from 'query-string'
 
 const styles = theme => ({
   root: {
@@ -23,12 +22,6 @@ const styles = theme => ({
 class AlignItemsList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    // const values = queryString.parse(this.props.location.search);
-    // console.log(values.name)
   }
 
   render() {

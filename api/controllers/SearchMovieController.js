@@ -1,5 +1,6 @@
 const Controller = require('../modules/searchmovie/controller');
 module.exports = {
   getMovie: Controller.getMovie,
-  getMovieAutofill: Controller.getMovieAutofill
+  getMovieAutofill: Controller.getMovieAutofill,
+  getSharedResourse: Controller.getSharedResourse
 };

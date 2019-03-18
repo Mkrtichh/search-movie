@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Route, Link, BrowserRouter as Router, Redirect } from 'react-router-dom'
-import App from './app'
-import AlignItemsList from '../src/components/movie-list/movieList'
 import NavBar from "../src/components/navbar/navbar";
+import IntegrationDownshift from './components/search/search';
 
-const routing = (
-  <NavBar />,
-  <Router>
+class App extends Component {
+  render() {
+    return ( [
+        <NavBar />,
+        <IntegrationDownshift />
+      ]
+    );
+  }
+}
+export default App
 
-      <Route path="/" component={App} />
-      <Route path="/movie/:id" component={ AlignItemsList } />
-  </Router>
-);
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
