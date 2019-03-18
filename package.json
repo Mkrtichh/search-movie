@@ -42,7 +42,7 @@
   "scripts": {
     "start": "node app.js",
     "migration": "node node_modules/db-migrate/bin/db-migrate up",
-    "heroku-postbuild": "heroku-nextjs-build npm run build:dev",
+    "heroku-postbuild": "npm run build:prod",
     "start:debug": "npm-run-all --parallel client debug",
     "client": "webpack --watch --hot",
     "build": "npm run build:prod",
