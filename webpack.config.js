@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  watch: true,
   entry: {
     entry: './assets/src/index.js'
   },
